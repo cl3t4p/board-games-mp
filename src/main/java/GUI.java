@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,4 +21,8 @@ public class GUI extends Application{
 
         }
     }
+=======
+public class GUI {
+    int X;
+>>>>>>> dev
 }
