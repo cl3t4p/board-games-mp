@@ -14,6 +14,7 @@ public class TestTTT {
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
 
         //Horizontal Test
+
         ticTacToe.put(0,0);
         ticTacToe.put(1,1);
         ticTacToe.put(0,1);
@@ -29,6 +30,11 @@ public class TestTTT {
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
 
         //Diagonal Test
+        /*
+        [x][ ][ ]
+        [ ][x][ ]
+        [ ][ ][x]
+        */
         ticTacToe.put(0,0);
         ticTacToe.put(0,1);
         ticTacToe.put(1,1);
@@ -37,5 +43,28 @@ public class TestTTT {
 
         assertEquals(player1,ticTacToe.checkWinner());
     }
+
+    @Test
+    public void testAntiDiagonal(){
+        /*
+        [ ][ ][x]
+        [y][x][ ]
+        [x][ ][y]
+        */
+        Player player1 = new Player("test1");
+        Player player2 = new Player("test2");
+        TicTacToe ticTacToe = new TicTacToe(player1, player2);
+
+        //Diagonal Test
+        ticTacToe.put(2,0);
+        ticTacToe.put(0,1);
+        ticTacToe.put(1,1);
+        ticTacToe.put(2,2);
+        ticTacToe.put(0,2);
+
+
+        assertEquals(player1,ticTacToe.checkWinner());
+    }
+
 
 }

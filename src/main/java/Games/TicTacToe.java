@@ -24,12 +24,30 @@ public class TicTacToe{
 
     public Player checkWinner(){
         //Check diagonal
+        /*
+        [x][ ][ ]
+        [ ][x][ ]
+        [ ][ ][x]
+        */
             for (int j = 0; j < grid.length-1; j++) {
                 if(grid[j][j] != grid[j+1][j+1])
                     break;
                 if(j+1 == grid.length-1)
                     return grid[0][0];
             }
+        //Check inverse diagonal
+        /*
+        [ ][ ][x]
+        [ ][x][ ]
+        [x][ ][ ]
+        */
+        for (int j = 0; j < grid.length-1; j++) {
+            if(grid[j][j] != grid[j+1][j+1])
+                break;
+            if(j+1 == grid.length-1)
+                return grid[0][0];
+        }
+        //Change code ^
 
         //Check horizontal
         for (Player[] players : grid) {
