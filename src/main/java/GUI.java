@@ -20,7 +20,7 @@ public class GUI extends Application{
         Line sinsitra = new Line(50, 130, 0, 160);
         Line ceiling= new Line(10, 0, 0, 0);
         Line bottom= new Line(20, 10, 0, 0);
-        
+
         Group root = new Group(destra, sinsitra, ceiling, bottom);
         Scene scene = new Scene(root, 500, 350, Color.BLACK);
 
