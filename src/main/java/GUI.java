@@ -16,13 +16,13 @@ public class GUI extends Application{
     @Override
     public void start(Stage primaryStage) {
 
-        Line destra = new Line(110, 130, 2, 130);
-        Line sinsitra = new Line(50, 130, 0, 160);
-        Line ceiling= new Line(10, 0, 0, 0);
-        Line bottom= new Line(20, 10, 0, 0);
+        Line destra = new Line(450, 400, 450, 0);
+        Line sinsitra = new Line(150, 400, 150, 0);
+        Line ceiling= new Line(10, 400, 10, 10);
+        Line bottom= new Line(20, 10, 10, 10);
 
         Group root = new Group(destra, sinsitra, ceiling, bottom);
-        Scene scene = new Scene(root, 500, 350, Color.BLACK);
+        Scene scene = new Scene(root, 600, 500);
 
         primaryStage.setTitle("BoardGames");
         primaryStage.setScene(scene);
