@@ -37,7 +37,7 @@ public class TestTTT {
         [ ][ ][x]
         */
 
-        ticTacToe.put(0,2);
+        ticTacToe.put(0,0);
         ticTacToe.put(0,1);
         ticTacToe.put(1,1);
         ticTacToe.put(0,2);
@@ -63,7 +63,7 @@ public class TestTTT {
 
         ticTacToe.put(2,0);
         ticTacToe.put(0,0);
-        ticTacToe.put(2,2);
+        ticTacToe.put(1,1);
         ticTacToe.put(0,0);
         ticTacToe.put(0,2);
 

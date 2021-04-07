@@ -1,6 +1,8 @@
 package Games;
 
 public class TicTacToe{
+
+
     private final Player[][] grid = new Player[3][3];
     private final Player player1,player2;
     boolean turn = true;
@@ -11,6 +13,7 @@ public class TicTacToe{
         System.out.println();
     }
 
+    //TODO Review Put input
     public void put(int x,int y){
         if(turn)
             put(player1,x,y);
@@ -41,13 +44,14 @@ public class TicTacToe{
         [ ][x][ ]
         [x][ ][ ]
         */
+        int x = 2;
         for (int j = 0; j < grid.length-1; j++) {
-            if(grid[j][j] != grid[j+1][j+1])
+            if(grid[j][x] != grid[j+1][x-1])
                 break;
             if(j+1 == grid.length-1)
-                return grid[0][0];
+                return grid[2][2];
+            x--;
         }
-        //Change code ^
 
         //Check horizontal
         for (Player[] players : grid) {
@@ -73,10 +77,6 @@ public class TicTacToe{
     }
 
 
-    //Testing
-    public Player[][]getGrid(){
-        return grid;
-    }
 
 
 }
