@@ -16,12 +16,12 @@ public class GUI extends Application{
     @Override
     public void start(Stage primaryStage) {
 
-        Line destra = new Line(400, 450, 400, 0);
-        Line sinsitra = new Line(200, 450, 200, 0);
-        Line ceiling= new Line(50, 150, 550, 150);
+        Line left = new Line(400, 450, 400, 0);
+        Line right = new Line(200, 450, 200, 0);
+        Line top= new Line(50, 150, 550, 150);
         Line bottom= new Line(50, 300, 550, 300);
 
-        Group root = new Group(destra, sinsitra, ceiling, bottom);
+        Group root = new Group(left, right, top, bottom);
         Scene scene = new Scene(root, 600, 500);
 
         primaryStage.setTitle("TicTacToe");
