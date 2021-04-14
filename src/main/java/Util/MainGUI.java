@@ -6,7 +6,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 public class MainGUI extends Application {
@@ -20,7 +19,6 @@ public class MainGUI extends Application {
     public void start(Stage primaryStage) {
 
         Button ChooseButton = new Button("Choose game");
-        Button StartGameButton = new Button("Start game");
         Button StatsButton = new Button("Statistics");
         Button QuitButton = new Button("Quit");
 
@@ -29,7 +27,6 @@ public class MainGUI extends Application {
         gp1.setPadding(new Insets(80, 0, 0, 80));
 
         gp1.add(ChooseButton, 0, 1 );
-        gp1.add(StartGameButton, 1, 1);
         gp1.add(StatsButton, 1, 2);
         gp1.add(QuitButton, 0, 2);
 
