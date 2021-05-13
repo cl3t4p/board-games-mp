@@ -4,7 +4,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
@@ -25,11 +27,7 @@ public class TicTacToGUI extends Application{
             btn[i] = new Button(buttonName);
             btn[i].setPrefSize(80, 80);
             int finalI = i;
-            btn[i].setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent e) {
-                    button_click(btn[finalI]);
-                }
-            });
+            btn[i].setOnAction(actionEvent -> System.out.println(actionEvent.toString()));
         }
 
         HBox firstRow = new HBox();
@@ -49,7 +47,7 @@ public class TicTacToGUI extends Application{
         board.setPadding(new Insets(10));
 
 
-        board.getChildren().addAll(ersteZeile, zweiteZeile, dritteZeile);
+        board.getChildren().addAll(firstRow, secondRow, thirdRow);
         BorderPane background = new BorderPane();
         background.setPadding(new Insets(10));
 

@@ -1,5 +1,5 @@
 # User-specific stuff
-client/.idea/
+.idea/
 
 *.iml
 *.ipr
