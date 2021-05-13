@@ -1,25 +1,41 @@
-package Games;
+package Games.TicTacToe;
+
+import Games.Exception.WrongTurnException;
+import Games.Player;
 
 public class TicTacToe{
 
 
     private final Player[][] grid = new Player[3][3];
     private final Player player1,player2;
-    boolean turn = true;
+    Boolean turn = null;
     public TicTacToe(Player player1,Player player2){
         this.player1 = player1;
         this.player2 = player2;
+    }
 
-        System.out.println();
+
+    private void startGame(Player first){
+        turn = (player1 == first);
     }
 
     //TODO Review Put input
-    public void put(int x,int y){
+    public void put(int x,int y,Player player) throws WrongTurnException {
+        if(turn == null) startGame(player);
         if(turn)
-            put(player1,x,y);
+            if(player1 != player) {
+                put(player1, x, y);
+                turn = !turn;
+                return;
+            }
         else
-            put(player2,x,y);
-        turn = !turn;
+            if(player2 != player) {
+                put(player2, x, y);
+                turn = !turn;
+                return;
+            }
+
+        throw new WrongTurnException("Error : Wrong TicTacToe player turn");
     }
     private void put(Player player,int x,int y){
         grid[x][y] = player;

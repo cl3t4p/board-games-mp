@@ -1,5 +1,6 @@
+import Games.Exception.WrongTurnException;
 import Games.Player;
-import Games.TicTacToe;
+import Games.TicTacToe.TicTacToe;
 import org.junit.jupiter.api.Test;
 
 
@@ -8,23 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestTTT {
 
     @Test
-    public void testHorizontal(){
+    public void testHorizontal() throws WrongTurnException {
         Player player1 = new Player("test1");
         Player player2 = new Player("test2");
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
 
         //Horizontal Test
 
-        ticTacToe.put(0,0);
-        ticTacToe.put(1,1);
-        ticTacToe.put(0,1);
-        ticTacToe.put(2,2);
-        ticTacToe.put(0,2);
+        ticTacToe.put(0,0,player1);
+        ticTacToe.put(1,1,player2);
+        ticTacToe.put(0,1,player1);
+        ticTacToe.put(2,2,player2);
+        ticTacToe.put(0,2,player1);
         assertEquals(player1,ticTacToe.checkWinner());
     }
 
     @Test
-    public void testDiagonal(){
+    public void testDiagonal() throws WrongTurnException {
         Player player1 = new Player("test1");
         Player player2 = new Player("test2");
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
@@ -36,18 +37,17 @@ public class TestTTT {
         [ ][x][ ]
         [ ][ ][x]
         */
-
-        ticTacToe.put(0,0);
-        ticTacToe.put(0,1);
-        ticTacToe.put(1,1);
-        ticTacToe.put(0,2);
-        ticTacToe.put(2,2);
+        ticTacToe.put(0,0,player1);
+        ticTacToe.put(0,1,player2);
+        ticTacToe.put(1,1,player1);
+        ticTacToe.put(0,2,player2);
+        ticTacToe.put(2,2,player1);
 
         assertEquals(player1,ticTacToe.checkWinner());
     }
 
     @Test
-    public void testAntiDiagonal(){
+    public void testAntiDiagonal() throws WrongTurnException {
 
         /*
         [ ][ ][x]
@@ -60,12 +60,11 @@ public class TestTTT {
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
 
         //Diagonal Test
-
-        ticTacToe.put(2,0);
-        ticTacToe.put(0,0);
-        ticTacToe.put(1,1);
-        ticTacToe.put(0,0);
-        ticTacToe.put(0,2);
+        ticTacToe.put(2,0,player1);
+        ticTacToe.put(0,0,player2);
+        ticTacToe.put(1,1,player1);
+        ticTacToe.put(0,0,player2);
+        ticTacToe.put(0,2,player1);
 
         assertEquals(player1,ticTacToe.checkWinner());
     }
