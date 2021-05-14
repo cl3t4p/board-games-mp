@@ -1,20 +1,14 @@
 
-
-import Util.MainGUI;
-
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
 
-        TicTacToGUI.startAPP(args);
+    TicTacToGUI.startAPP(args);
 
-        //MainGUI.startAPP(args);
+    // MainGUI.startAPP(args);
 
-
-       // ServerHandler serverHandler = new ServerHandler(5000);
-       // serverHandler.start();
-    }
-
-
+    // ServerHandler serverHandler = new ServerHandler(5000);
+    // serverHandler.start();
+  }
 }
