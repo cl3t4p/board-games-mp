@@ -1,5 +1,5 @@
-**.idea/
-**.mvn/
-**target/
-/.idea/
+.idea/
+target/
 *.iml
+
+*.class

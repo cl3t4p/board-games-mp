@@ -1,0 +1,13 @@
+server\Controller\InvitationController.class
+server\ServerApplication.class
+server\Games\Components\Exception\WrongDataException.class
+server\Games\Components\Player.class
+server\Controller\PlayerController.class
+server\Games\TicTacToe$TicTacToeMove.class
+server\Games\Components\Exception\WrongTurnException.class
+server\Games\Components\Invitation.class
+server\Games\Games.class
+server\Controller\GameController.class
+server\Games\TicTacToe.class
+server\Games\Components\Game\Game.class
+server\Games\Components\Game\Move.class
