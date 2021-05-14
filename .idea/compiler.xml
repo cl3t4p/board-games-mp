@@ -6,11 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="board-games-mp" />
+        <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="board-games-mp" target="11" />
+      <module name="board-games-mp" target="1.5" />
+      <module name="board-games-mp (1) (com.github.cl3t4p)" target="11" />
+      <module name="server" target="11" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="server" options="-parameters" />
+    </option>
   </component>
 </project>
