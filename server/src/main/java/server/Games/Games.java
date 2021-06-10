@@ -1,8 +1,12 @@
 package server.Games;
 
+
+
 public enum Games {
-    TicTacToe,
-    NavalBattle;
+
+    TicTacToe();
+    //NavalBattle;
+
 
 
 

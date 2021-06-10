@@ -1,12 +1,14 @@
 package server.Games;
 
-import server.Games.Components.Exception.WrongDataException;
-import server.Games.Components.Exception.WrongTurnException;
-import server.Games.Components.Game.Game;
-import server.Games.Components.Game.Move;
-import server.Games.Components.Player;
+import server.Components.Exception.WrongDataException;
+import server.Components.Exception.WrongTurnException;
+import server.Games.Game.Game;
+import server.Components.Player;
 
-public class TicTacToe extends Game implements Move {
+
+import java.util.Arrays;
+
+public class TicTacToe extends Game {
 
     private final Player[][] grid = new Player[3][3];
 
@@ -14,11 +16,16 @@ public class TicTacToe extends Game implements Move {
         super(player1, player2);
     }
 
+
+
     @Override
-    public void move(Player player, Object move) throws WrongTurnException, WrongDataException {
-        if(move instanceof TicTacToeMove){
-            TicTacToeMove ticTacToeMove = (TicTacToeMove) move;
-            put(ticTacToeMove.getX(),ticTacToeMove.getY(),player);
+    public void move(Player player, Object object) throws WrongTurnException, WrongDataException {
+        if(object instanceof Move){
+            Move move = (Move) object;
+            if(grid[move.getX()][move.getY()] != null) {
+                put(move.getX(), move.getY(), player);
+                update(Arrays.deepToString(grid));
+            }
         }
         else
             throw new WrongDataException("The move is not of type 'TicTacToe'");
@@ -28,18 +35,16 @@ public class TicTacToe extends Game implements Move {
     //TODO Review Put input
     public void put(int x,int y,Player player) throws WrongTurnException {
         if(turn == null) startGame(player);
-        if(turn)
-            if(player1 != player) {
-                put(player1, x, y);
-                turn = !turn;
-                return;
-            }
-            else
-            if(player2 != player) {
-                put(player2, x, y);
-                turn = !turn;
-                return;
-            }
+        if(player1 != player) {
+            put(player1, x, y);
+            turn = !turn;
+            return;
+        }
+        else if(player2 != player) {
+            put(player2, x, y);
+            turn = !turn;
+            return;
+        }
 
         throw new WrongTurnException("Error : Wrong TicTacToe player turn");
     }
@@ -98,12 +103,23 @@ public class TicTacToe extends Game implements Move {
         return null;
     }
 
-    public static class TicTacToeMove
+    public static class Move
     {
         int x,y;
 
-        public TicTacToeMove(int x, int y) {
+        public Move(int x, int y) {
             this.x = x;
+            this.y = y;
+        }
+        public Move(){
+
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public void setY(int y) {
             this.y = y;
         }
 
