@@ -33,42 +33,7 @@ public class BattelShipGUI extends Application {
         return pos;
     }
 
-    public static void startAPP(String[] args) {
-        launch(args);
-    }
-
-    public Button[][] btn = new Button[20][10];
-
-    protected boolean wasShot;
-    protected boolean schipOnPos;
-
-    public boolean isHit() {
-        return wasShot;
-    }
-
-    public boolean isShip() {
-        return schipOnPos;
-    }
-
-    public void placeShip(Button button) {
-        schipOnPos = true;
-    }
-
-    public void hitShip() {
-        schipOnPos = false;
-    }
-
-    public boolean Shoot(Button btn) {
-        wasShot = true;
-        if (schipOnPos) {
-            hitShip();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-     public int[] placeShip(int[] feld, int pos, int x, int y) {
+    public int[] placeShip(int[] feld, int pos, int x, int y) {
         feld[pos] = 10 * x + y;
         return feld;
     }
@@ -83,11 +48,13 @@ public class BattelShipGUI extends Application {
         return shoot;
     }
 
-    public boolean ComputerShoot(int[] feld1, int[] feld2) {
+    public boolean ComputerShoot(int[] feld1) {
         boolean shoot = false;
-        for (int k = 0; k < 11; k++) {
-            if (feld1[k] == feld2[k]) {
-                shoot = true;
+        for(int f = 0; f<10; f++){
+            for (int k = 0; k < 10; k++) {
+                if (feld1[k] == MyShipPos[f]) {
+                    shoot = true;
+                }
             }
         }
         return shoot;
@@ -102,9 +69,13 @@ public class BattelShipGUI extends Application {
             return isAvailable;
         }
 
+
+    public static void startAPP(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) {
-
         Label info1 = new Label();
             Label info2 = new Label("You can place 10 Ships");
             Label Titel1 = new Label("Enemy");
@@ -234,3 +205,4 @@ public class BattelShipGUI extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         }
+    }
