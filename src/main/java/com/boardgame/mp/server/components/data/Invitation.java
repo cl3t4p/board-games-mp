@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Invitation {
 
-    Games game;
+    Integer game;
     @Id
     @GeneratedValue(generator ="UUID")
     @GenericGenerator(
@@ -33,7 +33,7 @@ public class Invitation {
 
 
     public Invitation(Games game,UUID reciver,UUID owner) {
-        this.game = game;
+        this.game = Games.getGames().indexOf(game);
         this.reciveruuid = reciver;
         this.owneruuid = owner;
     }
@@ -42,7 +42,7 @@ public class Invitation {
         HashMap<String,String> result = new HashMap<>();
         result.put("invitationuuid",uuid.toString());
         result.put("reciveruuid",uuid.toString());
-        result.put("gametype", game.name());
+        result.put("gametype", Games.getGamesByID(game).getName());
         return result;
     }
 

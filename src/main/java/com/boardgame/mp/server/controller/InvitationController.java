@@ -49,13 +49,18 @@ public class InvitationController {
     }
 
     /**
-     * Will get all the type of invites
-     * @return
+     * Will get the ID of the Games
+     * @return List of Game Names
      */
     @GetMapping("types")
-    public Games[] getTypesGames(){
-        return Games.class.getEnumConstants();
+    public HashMap<Integer,String> getTypesGames(){
+        HashMap<Integer,String> hashMap = new HashMap<>();
+        for (int i = 0; i < Games.getGames().size(); i++) {
+            hashMap.put(i,Games.getGames().get(i).getName());
+        }
+        return hashMap;
     }
+
 
 
     @DeleteMapping("/")
@@ -97,7 +102,7 @@ public class InvitationController {
         Player player1 = playerRepo.getPlayerByPrivateuuid(invitation.getOwneruuid())
                 .orElseThrow(PlayerNotFoundByUUID::new);
 
-        Game game = invitation.getGame().createInstance(player1,player2,gameRepo);
+        Game game = Games.getGamesByID(invitation.getGame()).createInstance(player1,player2,gameRepo);
 
         gameRepo.add(game);
 
