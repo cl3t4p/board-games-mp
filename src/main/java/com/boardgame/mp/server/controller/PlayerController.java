@@ -3,8 +3,8 @@ package  com.boardgame.mp.server.controller;
 
 
 
-import com.boardgame.mp.server.Repository.PlayerRepo;
-import com.boardgame.mp.server.components.Exception.PlayerNotFoundByUUID;
+import com.boardgame.mp.server.repository.PlayerRepo;
+import com.boardgame.mp.server.components.exception.PlayerNotFoundByUUID;
 import com.boardgame.mp.server.components.data.Player;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.Collections;
 import java.util.UUID;
 
 @RestController
@@ -25,11 +25,13 @@ public class PlayerController {
 
     private final PlayerRepo playerRepo;
 
+    @GetMapping("/")
+    public ResponseEntity<Object> getPlayerName(@RequestParam UUID uuid) {
+        Player player = playerRepo.getPlayerByPublicuuid(uuid).orElseThrow(PlayerNotFoundByUUID::new);
+        return ResponseEntity.ok().body(player.safeData());
+    }
 
-
-
-
-   @DeleteMapping("/")
+    @DeleteMapping("/")
     public ResponseEntity<Object> delPlayer(@RequestParam String uuid) throws PlayerNotFoundByUUID {
         Player player =  playerRepo.getPlayerByPrivateuuid(UUID.fromString(uuid)).orElseThrow(PlayerNotFoundByUUID::new);
         playerRepo.delete(player);

@@ -1,13 +1,13 @@
-package  com.boardgame.mp.server.Repository.memory;
+package  com.boardgame.mp.server.repository.memory;
 
 
 
-import com.boardgame.mp.server.Repository.SessionRepo;
+import com.boardgame.mp.server.repository.SessionRepo;
 import com.boardgame.mp.server.games.game.Game;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.socket.TextMessage;
-import com.boardgame.mp.server.Repository.GameRepo;
+import com.boardgame.mp.server.repository.GameRepo;
 
 import java.io.IOException;
 import java.util.HashSet;

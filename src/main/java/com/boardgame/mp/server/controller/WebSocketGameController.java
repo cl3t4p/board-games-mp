@@ -1,6 +1,6 @@
 package  com.boardgame.mp.server.controller;
 
-import com.boardgame.mp.server.Repository.GameRepo;
+import com.boardgame.mp.server.repository.GameRepo;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import com.boardgame.mp.server.Repository.SessionRepo;
+import com.boardgame.mp.server.repository.SessionRepo;
 import com.boardgame.mp.server.components.data.Session;
 
 import java.io.IOException;

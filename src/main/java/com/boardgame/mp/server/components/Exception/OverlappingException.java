@@ -1,4 +1,4 @@
-package  com.boardgame.mp.server.components.Exception;
+package  com.boardgame.mp.server.components.exception;
 
 public class OverlappingException extends RuntimeException{
     public OverlappingException() {

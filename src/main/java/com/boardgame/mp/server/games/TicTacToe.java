@@ -2,15 +2,15 @@ package  com.boardgame.mp.server.games;
 
 
 
-import com.boardgame.mp.server.components.Exception.NotFoundByUUID;
-import com.boardgame.mp.server.components.Exception.OverlappingException;
-import com.boardgame.mp.server.components.Exception.WrongDataException;
-import com.boardgame.mp.server.components.Exception.WrongTurnException;
+import com.boardgame.mp.server.components.exception.NotFoundByUUID;
+import com.boardgame.mp.server.components.exception.OverlappingException;
+import com.boardgame.mp.server.components.exception.WrongDataException;
+import com.boardgame.mp.server.components.exception.WrongTurnException;
 import com.boardgame.mp.server.games.game.Game;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import com.boardgame.mp.server.Repository.GameRepo;
+import com.boardgame.mp.server.repository.GameRepo;
 import com.boardgame.mp.server.components.data.Player;
 import org.springframework.http.ResponseEntity;
 

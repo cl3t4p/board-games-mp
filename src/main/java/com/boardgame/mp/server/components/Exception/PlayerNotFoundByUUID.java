@@ -1,4 +1,4 @@
-package  com.boardgame.mp.server.components.Exception;
+package  com.boardgame.mp.server.components.exception;
 
 
 import org.springframework.http.HttpStatus;

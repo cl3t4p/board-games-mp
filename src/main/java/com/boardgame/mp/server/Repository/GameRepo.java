@@ -1,10 +1,12 @@
-package com.boardgame.mp.server.Repository;
+package com.boardgame.mp.server.repository;
 
 
 import com.boardgame.mp.server.games.game.Game;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 import java.util.UUID;
+
 
 public interface GameRepo {
 

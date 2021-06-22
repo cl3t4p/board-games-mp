@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.UUID;
 
 @Entity
@@ -37,7 +38,12 @@ public class Invitation {
         this.owneruuid = owner;
     }
 
-
-
+    public HashMap<String,String> safeInvitation(){
+        HashMap<String,String> result = new HashMap<>();
+        result.put("invitationuuid",uuid.toString());
+        result.put("reciveruuid",uuid.toString());
+        result.put("gametype", game.name());
+        return result;
+    }
 
 }

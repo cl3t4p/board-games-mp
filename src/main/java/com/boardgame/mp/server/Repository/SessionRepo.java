@@ -1,12 +1,14 @@
-package  com.boardgame.mp.server.Repository;
+package  com.boardgame.mp.server.repository;
 
 
 import com.boardgame.mp.server.components.data.Session;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.web.socket.WebSocketSession;
 
 
 import java.util.Set;
 import java.util.UUID;
+
 
 public interface SessionRepo {
     void add(Session session);

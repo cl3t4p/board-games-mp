@@ -1,10 +1,10 @@
 package  com.boardgame.mp.server.controller;
 
 
-import com.boardgame.mp.server.Repository.GameRepo;
-import com.boardgame.mp.server.Repository.PlayerRepo;
-import com.boardgame.mp.server.components.Exception.NotFoundByUUID;
-import com.boardgame.mp.server.components.Exception.PlayerNotFoundByUUID;
+import com.boardgame.mp.server.repository.GameRepo;
+import com.boardgame.mp.server.repository.PlayerRepo;
+import com.boardgame.mp.server.components.exception.NotFoundByUUID;
+import com.boardgame.mp.server.components.exception.PlayerNotFoundByUUID;
 import com.boardgame.mp.server.games.game.Game;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,6 +26,13 @@ public class GameController {
     PlayerRepo playerRepo;
 
 
+    /**
+     *
+     * @param puuid Priviate UUID of the player
+     * @param gameuuid UUID of the game
+     * @param move JSONObject of that will be persed inside a Game Class
+     * @return Will return the response of the object
+     */
     @PostMapping("/game")
     public ResponseEntity<Object> move(@RequestParam String puuid, @RequestParam UUID gameuuid, @RequestBody String move) throws Exception {
         Game game = gameRepo.GameByUUID(gameuuid)

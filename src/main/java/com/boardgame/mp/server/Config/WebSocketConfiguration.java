@@ -1,10 +1,10 @@
-package  com.boardgame.mp.server.Config;
+package  com.boardgame.mp.server.config;
 
 
 
 
-import com.boardgame.mp.server.Repository.GameRepo;
-import com.boardgame.mp.server.Repository.SessionRepo;
+import com.boardgame.mp.server.repository.GameRepo;
+import com.boardgame.mp.server.repository.SessionRepo;
 import com.boardgame.mp.server.controller.WebSocketGameController;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,10 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 
-
+/**
+ * This Configuration register the websocket
+ *
+ */
 @Configuration
 @EnableWebSocket
 @AllArgsConstructor
@@ -24,6 +27,7 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
 
     SessionRepo sessionRepo;
     GameRepo gameRepo;
+
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.UUID;
 
 @Entity
@@ -39,5 +40,11 @@ public class Player {
 
     }
 
+    public HashMap<String,Object> safeData(){
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("name",name);
+        result.put("publicUUID",publicuuid);
+        return result;
+    }
 
 }

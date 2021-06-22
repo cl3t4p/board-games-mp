@@ -1,9 +1,9 @@
-package  com.boardgame.mp.server.Repository.memory;
+package  com.boardgame.mp.server.repository.memory;
 
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
-import com.boardgame.mp.server.Repository.SessionRepo;
+import com.boardgame.mp.server.repository.SessionRepo;
 import com.boardgame.mp.server.components.data.Session;
 
 import java.util.HashSet;

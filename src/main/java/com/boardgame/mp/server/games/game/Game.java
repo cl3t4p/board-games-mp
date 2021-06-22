@@ -2,7 +2,7 @@ package  com.boardgame.mp.server.games.game;
 
 
 import lombok.EqualsAndHashCode;
-import com.boardgame.mp.server.Repository.GameRepo;
+import com.boardgame.mp.server.repository.GameRepo;
 import com.boardgame.mp.server.components.data.Player;
 import org.springframework.http.ResponseEntity;
 

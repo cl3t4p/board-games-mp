@@ -1,7 +1,8 @@
-package com.boardgame.mp.server.Repository;
+package com.boardgame.mp.server.repository;
 
 
 import com.boardgame.mp.server.components.data.Invitation;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,11 +1,11 @@
 package  com.boardgame.mp.server.controller;
 
 
-import com.boardgame.mp.server.Repository.GameRepo;
-import com.boardgame.mp.server.Repository.InvitationRepo;
-import com.boardgame.mp.server.Repository.PlayerRepo;
-import com.boardgame.mp.server.components.Exception.NotFoundByUUID;
-import com.boardgame.mp.server.components.Exception.PlayerNotFoundByUUID;
+import com.boardgame.mp.server.repository.GameRepo;
+import com.boardgame.mp.server.repository.InvitationRepo;
+import com.boardgame.mp.server.repository.PlayerRepo;
+import com.boardgame.mp.server.components.exception.NotFoundByUUID;
+import com.boardgame.mp.server.components.exception.PlayerNotFoundByUUID;
 import com.boardgame.mp.server.components.data.Invitation;
 import com.boardgame.mp.server.components.data.Player;
 import com.boardgame.mp.server.games.Games;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/invites")
@@ -31,14 +32,26 @@ public class InvitationController {
     PlayerRepo playerRepo;
     GameRepo gameRepo;
 
+    /**
+     * Will show the invites that the person has
+     * @param uuid The Private UUID of the Player
+     * @return List of invites
+     */
     @PostMapping("/myinvites")
-    public ResponseEntity<List<Invitation>> showMyInvitations(@RequestParam UUID uuid){
+    public ResponseEntity<Object> showMyInvitations(@RequestParam UUID uuid){
         Player player = playerRepo.getPlayerByPrivateuuid(uuid)
                 .orElseThrow(PlayerNotFoundByUUID::new);
 
-        return ResponseEntity.ok().body(invitationRepo.getInvitationByReciveruuid(player.getPublicuuid()));
+        return ResponseEntity.ok().body(
+                invitationRepo.getInvitationByReciveruuid(player.getPublicuuid())
+                .stream().map(Invitation::safeInvitation)
+                        .collect(Collectors.toSet()));
     }
 
+    /**
+     * Will get all the type of invites
+     * @return
+     */
     @GetMapping("types")
     public Games[] getTypesGames(){
         return Games.class.getEnumConstants();
@@ -47,9 +60,11 @@ public class InvitationController {
 
     @DeleteMapping("/")
     public ResponseEntity<Object> delInvitation(@RequestParam String uuid) {
-        Invitation invitation = invitationRepo.getInvitationByUuid(UUID.fromString(uuid)).orElseThrow(()-> new NotFoundByUUID("There is no Invite with that UUID!"));
+        Invitation invitation = invitationRepo.getInvitationByUuid(UUID.fromString(uuid))
+                .orElseThrow(()-> new NotFoundByUUID("There is no Invite with that UUID!"));
+
         invitationRepo.delete(invitation);
-        return ResponseEntity.ok().body(invitation);
+        return ResponseEntity.ok().body(invitation.safeInvitation());
     }
 
     @PostMapping("/")
@@ -58,7 +73,9 @@ public class InvitationController {
         if(playerRepo.existsPlayerByPrivateuuid(owner) && playerRepo.existsPlayerByPublicuuid(reciver)){
             Invitation invitation = new Invitation(Games.getGamesByID(game), reciver, owner);
             invitationRepo.save(invitation);
-            return ResponseEntity.ok().body(invitation);
+
+
+            return ResponseEntity.ok().body(invitation.safeInvitation());
         }
         throw new PlayerNotFoundByUUID();
     }
