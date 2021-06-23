@@ -57,6 +57,16 @@ ws://localhost:9090/games/[GAMEUUID]
 ```
 
 For connecting to the Websocket
+---
+
+## Adding your own game
+
+If you want to add your own Turn Based Game you 
+just need to 
+- Create a class inside the games folder
+- Extends this class with Game
+- Implements all the Game methods
+- The Application will load the Class automatically
 
 ---
 
