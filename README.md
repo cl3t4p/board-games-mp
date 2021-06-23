@@ -57,6 +57,7 @@ ws://localhost:9090/games/[GAMEUUID]
 ```
 
 For connecting to the Websocket
+
 ---
 
 ## Adding your own game
