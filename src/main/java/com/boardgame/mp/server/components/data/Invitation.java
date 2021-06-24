@@ -1,14 +1,14 @@
 package com.boardgame.mp.server.components.data;
 
-
 import com.boardgame.mp.server.games.Games;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -18,32 +18,27 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Invitation {
 
-    Games game;
-    @Id
-    @GeneratedValue(generator ="UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column( updatable = false, nullable = false)
-    UUID uuid;
-    UUID owneruuid;
-    UUID reciveruuid;
 
+  @Id
+  @Column(updatable = false, nullable = false)
+  UUID uuid;
+  UUID owneruuid;
+  UUID reciveruuid;
 
+  Integer game;
 
-    public Invitation(Games game,UUID reciver,UUID owner) {
-        this.game = game;
-        this.reciveruuid = reciver;
-        this.owneruuid = owner;
-    }
+  public Invitation(Games game, UUID reciver, UUID owner) {
+    this.game = Games.getGames().indexOf(game);
+    this.reciveruuid = reciver;
+    this.owneruuid = owner;
+    this.uuid = UUID.randomUUID();
+  }
 
-    public HashMap<String,String> safeInvitation(){
-        HashMap<String,String> result = new HashMap<>();
-        result.put("invitationuuid",uuid.toString());
-        result.put("reciveruuid",uuid.toString());
-        result.put("gametype", game.name());
-        return result;
-    }
-
+  public HashMap<String, String> safeInvitation() {
+    HashMap<String, String> result = new HashMap<>();
+    result.put("invitationuuid", uuid.toString());
+    result.put("reciveruuid", uuid.toString());
+    result.put("gametype", Games.getGamesByID(game).getName());
+    return result;
+  }
 }

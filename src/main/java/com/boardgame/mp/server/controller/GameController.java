@@ -7,7 +7,7 @@ import com.boardgame.mp.server.components.exception.NotFoundByUUID;
 import com.boardgame.mp.server.components.exception.PlayerNotFoundByUUID;
 import com.boardgame.mp.server.games.game.Game;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/moves")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
 public class GameController {
 
@@ -27,7 +27,7 @@ public class GameController {
 
 
     /**
-     *
+     * Call the move method of the Game
      * @param puuid Priviate UUID of the player
      * @param gameuuid UUID of the game
      * @param move JSONObject of that will be persed inside a Game Class
