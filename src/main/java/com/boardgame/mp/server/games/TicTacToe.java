@@ -10,11 +10,12 @@ import com.boardgame.mp.server.repository.GameRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.Collections;
-
+@NoArgsConstructor
 public class TicTacToe extends Game {
 
   private final Player[][] grid = new Player[3][3];
@@ -38,8 +39,6 @@ public class TicTacToe extends Game {
     if (grid[move.getX()][move.getY()] == null) {
       GameResponse message = put(move.getY(), move.getX(), player);
       Player winner = checkWinner();
-
-      System.out.println(winner);
       if (winner != null) {
         update("Winner : " + winner.getPublicuuid().toString());
         finishGame();
@@ -51,6 +50,11 @@ public class TicTacToe extends Game {
       return ResponseEntity.ok()
           .body(Collections.singletonMap("response", "The Move has been sent"));
     } else throw new OverlappingException("Error Trying to replace a non null spot");
+  }
+
+  @Override
+  public ResponseEntity<Object> getMoveInfo() {
+    return null;
   }
 
   public String arrayToString() {

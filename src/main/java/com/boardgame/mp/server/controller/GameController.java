@@ -1,6 +1,7 @@
 package  com.boardgame.mp.server.controller;
 
 
+import com.boardgame.mp.server.games.Games;
 import com.boardgame.mp.server.repository.GameRepo;
 import com.boardgame.mp.server.repository.PlayerRepo;
 import com.boardgame.mp.server.components.exception.NotFoundByUUID;
@@ -40,6 +41,16 @@ public class GameController {
 
         return game.move(playerRepo.getPlayerByPrivateuuid(UUID.fromString(puuid))
                 .orElseThrow(PlayerNotFoundByUUID::new),move);
+    }
+
+    /**
+     * Call the getMoveInfo method of the Game
+     * @param gameid Type of game
+     * @return The MoveInfo
+     */
+    @GetMapping("/info")
+    public Game move(@RequestParam int gameid) throws Exception {
+        return Games.getGamesByID(gameid).createEmptyInstance();
     }
 
 }

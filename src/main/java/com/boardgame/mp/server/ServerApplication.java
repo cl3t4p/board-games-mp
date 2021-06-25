@@ -1,5 +1,6 @@
 package com.boardgame.mp.server;
 
+import com.boardgame.mp.server.components.exception.ClassNoArgsConstructor;
 import com.boardgame.mp.server.games.Games;
 import com.boardgame.mp.server.games.game.Game;
 import org.reflections.Reflections;
@@ -25,6 +26,12 @@ public class ServerApplication extends SpringBootServletInitializer {
     reflections
         .getSubTypesOf(Game.class)
         // Add Every class to the Games
-        .forEach(Games::addGame);
+        .forEach(aClass -> {
+          try {
+            Games.addGame(aClass);
+          } catch (ClassNoArgsConstructor classNoArgsConstructor) {
+            classNoArgsConstructor.printStackTrace();
+          }
+        });
   }
 }

@@ -7,12 +7,20 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
+
+/**
+ * Important !!
+ * Remember to add an Empty Constructor
+ */
 @EqualsAndHashCode
-public abstract class Game {
+public abstract class Game{
 
   private static GameRepo gameRepo;
-  private final UUID uuid;
+  private UUID uuid;
   protected Player player1, player2;
+
+  public Game() {
+  }
 
   public Game(Player player1, Player player2, GameRepo gameRepo) {
     this.uuid = UUID.randomUUID();
@@ -26,10 +34,10 @@ public abstract class Game {
    * Called when someone send a command throuh the api
    *
    * @param player The Player who sent the command
-   * @param move Command in JSON Format
+   * @param object Command in JSON Format
    * @return Response that will be sent to the player
    */
-  public abstract ResponseEntity<Object> move(Player player, String move) throws Exception;
+  public abstract ResponseEntity<Object> move(Player player, String object) throws Exception;
 
   public UUID getUUID() {
     return uuid;
@@ -45,4 +53,5 @@ public abstract class Game {
     gameRepo.closeByUUID(uuid);
     gameRepo.remove(this);
   }
+  public abstract ResponseEntity<Object> getMoveInfo();
 }

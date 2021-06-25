@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,14 @@ public class InvitationController {
     return ResponseEntity.ok()
         .body(
             invitationRepo.getInvitationsByReciveruuid(player.getPublicuuid()).stream()
-                .map(Invitation::safeInvitation)
+                .map(invitation -> {
+                  try {
+                    return invitation.safeInvitation();
+                  } catch (Exception exception) {
+                    exception.printStackTrace();
+                  }
+                  return null;
+                })
                 .collect(Collectors.toSet()));
   }
 
@@ -54,8 +62,8 @@ public class InvitationController {
   @GetMapping("types")
   public HashMap<Integer, String> getTypesGames() {
     HashMap<Integer, String> hashMap = new HashMap<>();
-    for (int i = 0; i < Games.getGames().size(); i++) {
-      hashMap.put(i, Games.getGames().get(i).getName());
+    for (int i = 0; i < Games.getGamesList().size(); i++) {
+      hashMap.put(i, Games.getGamesList().get(i).getName());
     }
     return hashMap;
   }
@@ -67,7 +75,7 @@ public class InvitationController {
    * @return The deleted Invitation
    */
   @DeleteMapping("/")
-  public ResponseEntity<Object> delInvitation(@RequestParam String uuid) {
+  public ResponseEntity<Object> delInvitation(@RequestParam String uuid) throws Exception {
     Invitation invitation =
         invitationRepo
             .getInvitationByUuid(UUID.fromString(uuid))
@@ -87,7 +95,7 @@ public class InvitationController {
    */
   @PostMapping("/")
   public ResponseEntity<Object> newInvitation(
-      @RequestParam UUID owner, @RequestParam UUID reciver, @RequestParam Integer game) {
+      @RequestParam UUID owner, @RequestParam UUID reciver, @RequestParam Integer game) throws Exception {
 
     if (playerRepo.existsPlayerByPrivateuuid(owner)
         && playerRepo.existsPlayerByPublicuuid(reciver)) {

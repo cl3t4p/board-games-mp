@@ -28,13 +28,13 @@ public class Invitation {
   Integer game;
 
   public Invitation(Games game, UUID reciver, UUID owner) {
-    this.game = Games.getGames().indexOf(game);
+    this.game = Games.getGamesList().indexOf(game);
     this.reciveruuid = reciver;
     this.owneruuid = owner;
     this.uuid = UUID.randomUUID();
   }
 
-  public HashMap<String, String> safeInvitation() {
+  public HashMap<String, String> safeInvitation() throws Exception {
     HashMap<String, String> result = new HashMap<>();
     result.put("invitationuuid", uuid.toString());
     result.put("reciveruuid", uuid.toString());
